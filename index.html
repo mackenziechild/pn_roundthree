@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="pn">
 	<head>
 		<title>Precision Nutrition: Life Changing, Research-Driven Nutrition Coaching.</title>
 		<link rel="stylesheet" href="css/style.css">
@@ -13,15 +13,46 @@
 			<div class="container">
 				<div class="logo">
 					<a href="#"><img src="images/pnLogo.svg" alt="Precision Nutrition"></a>
+					<a href="#" class="login">Log In</a>
 				</div>
+			</div>
+		</header>
+		<div class="navigation">
+			<div class="container">
 				<nav id="nav">
 					<ul>	
+						<a href="#"><li class="current">Blog</li></a>
+						<a href="#"><li>Books</li></a>
 						<a href="#"><li>Coaching</li></a>
 						<a href="#"><li>Certification</li></a>
-						<a href="#"><li>Books</li></a>
-						<a href="#"><li class="current">Blog</li></a>
 						<a href="#"><li>Forum</li></a>
-						<a href="#"><li class="button">Login</li></a>
+						<a href="#"><li>About Us</li></a>
+						<a href="#"><li>Contact Us</li></a>
+						<li class="twitter"><a href="#"><i class="icon-twitter"></a></i></li>
+						<li class="facebook"><a href="#"><i class="icon-facebook"></a></i></li>
+						<form>
+							<input type="search" name="s" placeholder="Search Precision Nutrition">
+					    <input type="submit" name="Search" value="Search">
+					  </form>
+						<!-- <a href="#"><li class="button">Login</li></a> -->
+					</ul>
+				</nav>
+			</div>
+		</div>
+
+		<header class="miniHeader">
+			<div class="container">
+				<a href="#"><img src="images/pn_symbol.svg" alt="Precision Nutrition"></a>
+
+				<nav class="miniNavigation">
+					<ul>	
+						<a href="#"><li class="current">Blog</li></a>
+						<a href="#"><li>Books</li></a>
+						<a href="#"><li>Coaching</li></a>
+						<a href="#"><li>Certification</li></a>
+						<a href="#"><li>Forum</li></a>
+						<a href="#"><li>About Us</li></a>
+						<a href="#"><li>Contact Us</li></a>
 					</ul>
 				</nav>
 			</div>
@@ -29,7 +60,7 @@
 
 		<article class="main">
 			<div class="container">
-				<section class="post">
+			<section class="post">
 					<h1>All About Potatoes</h1>
 					<div class="meta">
 						<p>by <a href="#">Ryan Andrews</a> | Posted in <a href="#">"All About" Series</a> | January 14th, 2013</p>
@@ -291,51 +322,44 @@
 						<p><a href="#">Ryan Andrews</a> is a nationally ranked competitive bodybuilder from 1996-2001, Ryan trained and worked at The Johns Hopkins Weight Management Center, one of the most recognized and awarded research institutions in the world.</p>
 					</div>
 
-					<div class="signup">
-						<div class="signupHeader">
-							<h2>Change your life forever!</h2>
-							<p>Begin today with our <span class="highlight">free</span> 5-day nutrition course.</p>
-						</div>
-						<img class="beforeAfter" src="images/before_after.png" alt="Precision Nutrition clients before and after showing the insane amount of weight loss.">
-						<div class="done">
-						<h2>You my friend, are <strong>awesome!</strong></h2> <p>Thanks for signing up. You will recieve the course shortly.</p>
-						</div>
+			<div class="signup" ng-controller="signupController">
+				<div ng-hide="hidden" ng-animate="{show: 'fade-show', hide: 'fade-hide'}"class="signupHeader">
+					<h2>Change your life forever!</h2>
+					<p>Begin today with our <span class="highlight">free</span> 5-day nutrition course.</p>
+					<img class="beforeAfter" src="images/before_after.png" alt="Precision Nutrition clients before and after showing the insane amount of weight loss.">
 						<div class="signupLinks">
-							<a href="#"><div class="man"><p>I'm a Man</p></div></a>
-							<a href="#"><div class="woman"><p>I'm a Woman</p></div></a>
-							<a href="#"><div class="fitpro"><p>I'm a Fitness Pro</p></div></a>
-						</div>
-						<p class="select">*Select the program that applies to you</p>
-						<div id="signupForm">
-							<form id="freeCourse" action="http://respondto.it/pn_frontend_test" method="post">
-								<label for="name">What should we call you?</label><br>
-						    <input type="text" name="name" placeholder="Name"><br>
-						    <label for="email">Where should we send the course?</label><br>
-						    <input type="email" name="email" placeholder="you@example.com"><br>
-						    <label for="hire">Who should PN hire as their Front-End Design Engineer?</label><br>
-						    <input type="text" name="hire" placeholder="Mackenzie Child"><br>
-						    <input type="submit" id="submit" value="Lets Go!">
-							</form>
-						</div>
+						<a ng-hide="hidden" ng-click="$parent.hidden=true" href="" ><div class="button">Let's Get Started!</div></a>
 					</div>
-				</section>
-			</div>
-		</article>
+				</div>
 
-		<section id="sidebar">
-			<ul class="social">
-				<li>Say Hello:</li>
-				<li><a href="#"><i class="icon-twitter"></a></i></li>
-				<li><a href="#"><i class="icon-facebook"></a></i></li>
-				<li><a href="#"><i class="icon-google-plus"></a></i></li>
-				<li><a href="#"><i class="icon-pinterest"></a></i></li>
-			</ul>
-			<form class="searchform">
-		    <input type="search" name="s" placeholder="Search Precision Nutrition">
-		    <input type="submit" name="Search" value="Search">
-			</form>
+				<div id="signupForm" ng-show="hidden" ng-animate="{show: 'fade-show', hide: 'fade-hide'}">
+					<p>Fill in the information below and we will send you your <strong>free 5 day nutritional course.</strong></p>
+					<form>
+						<input type="radio" ng-model="form.course" id="man" name="course" value="Man"><label class="radio" for="man">I'm a Man</label></input>
+						<input type="radio" ng-model="form.course" id="woman" name="course" value="Woman"><label class="radio" for="woman">I'm a Woman</label>
+						<input type="radio" ng-model="form.course" id="fitpro" name="course" value="Fitness Pro"><label class="radio" for="fitpro">I'm a Fitness Pro</label>
+						<br><br>
+						<label for="name">What should we call you?</label><br>
+				    <input type="text" ng-model="form.name" placeholder="Name"><br>
+				    <label for="email">Where should we send the course?</label><br>
+				    <input type="email" ng-model="form.email" placeholder="you@example.com"><br>
+				    <label for="hire">Who should PN hire as their Front-End Design Engineer?</label><br>
+				    <input type="text" ng-model="form.hire" placeholder="Mackenzie Child"><br>
+				    <a href="" id="signUpButton" ng-click="submitForm()" type="button"><div class="button">Sign Up!</div></a>
+					</form>
+				</div>
+					<div class="success">
+						<h2>Thank you, {{ form.name }}!</h2>
+						<p>You will recieve day 1 of your <em>free</em> 5 day nutritional course at <strong>{{ form.email }}</strong> shortly!</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</article>
+
+	<section id="sidebar">
 			<div class="column1">
-				<h2>Topics</h2>
+				<h2 class="topSidebar">Topics</h2>
 				<ul>
 					<li><a href="#">All About Food &amp; Nutrition</a> (92)</li>
 					<li><a href="#">All About Vitamins &amp; Supplements</a> (13)</li>
@@ -357,13 +381,8 @@
 				</ul>
 			</div>
 			<div class="also">
-				<h2>Lean Eating Coaching</h2>
-				<a href="#"><img src="images/lean_eating_box.jpg"></a>
-
-				<p>Out of the box, you'll recieve numerous benefits using the <span class="highlight"><a href="#">LE Coaching Program</a></span>. The next group starts <span class="highlight">July 17th, 2013</span>. Get your name on the Presale list now to get early access!</p>
-
 				<h2>Also Check Out</h2>
-				<a href="#"><img src="images/pn3_system.svg"></a>
+				<a href="#"><img src="images/cta.jpg"></a>
 			</div>
 		</section>
 
@@ -401,16 +420,17 @@
 					<p>&copy;2013 Precision Nutrition Inc. All Rights Reserved.</p>
 					<p id="made">Made with <i class="icon-heart-empty"></i> by <a href="https://twitter.com/mackenziechild">Mackenzie Child</a>.</p>
 				</div>
-
 				<div class="top">
 					<a href="#top"><p id="back-to-top"><i class="icon-rocket"></i><br>Beam me up,<br> Scotty!</p></a>
 				</div>
 			</div>
-		</footer>
+			</footer>
 
 		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.1.5/angular.min.js"></script>
 		<script src="js/jquery.fitvids.js"></script>
 		<script src="js/global-ck.js"></script>
-		<script type="text/javascript" src="//assets.pinterest.com/js/pinit.js"></script>
+		<script src="js/app.js"></script>
+		<script src="js/controller.js"></script>
 	</body>
 </html>

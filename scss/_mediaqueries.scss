@@ -12,49 +12,38 @@
 	}
 }
 
+#menu, #miniMenu {
+	display: none;
+}
+
 /* Ipad _______________________________________________________________ */
 
 @media screen and (max-width: 870px) {
 
-	#menu {
-		float: right;
-		font-size: 1.7em;
-		color: #fff;
-		line-height: 2.3em;
-		margin: 0;
-		padding: 0;
-	}
-
-	#nav.js {
+	#menu, #miniMenu {
 		display: none;
 	}
 
+	// #nav.js {
+	// 	display: none;
+	// }
+
 	.header {
 		max-width: 100%;
+	}
+
+	.navigation {
+		text-align: center;
 		#nav {
 			float: none;
-			clear: both;
-			width: 100%;
 		}
-		ul {
-			width: 100%;
-			margin: 4em 0 0 0;
-		}
-		li {
-			display: block;
-			border-top: 1px solid #93d3f7;
-			padding: .75em 0;
-			margin: 0;
-		}
-		.button {
-			border: none;
-			border-top: 1px solid #93d3f7;
-			border-radius: 0;
+		input[type="search"], input[type="submit"], .twitter, .facebook {
+			display: none;
 		}
 	}
 
 	.main {
-		padding-top: 100px;
+		padding-top: 30px;
 		clear: both;
 	}
 
@@ -97,6 +86,9 @@
 		border-top: 1px solid $grey;
 		.social {
 			font-size: 2em;
+			margin-top: 0;
+		}
+		h2, .topSidebar {
 			margin-top: 0;
 		}
 		.column1, .column2 {
@@ -146,6 +138,12 @@
 	}
 }
 
+@media screen and (max-width: 750px) {
+	.header  {
+		background: $mainBlue url('../images/hex_no_text.svg') no-repeat 83% 0%;
+	}
+}
+
 /* SMALL RESOLUTIONS ____________________________________________________________________ */
 
 @media screen and (max-width: 600px) {
@@ -166,23 +164,79 @@ p {
 	margin: 1em 0;
 }
 
+#menu {
+	font-size: 1.7em;
+	line-height: 2em;
+	display: inline-block;
+	color: $darkBlue;
+}
+
+#miniMenu {
+	// text-align: center;
+	display: inline-block;
+	float: right;
+	font-size: 1.5em;
+	line-height: 1.2em;
+}
+
+#nav.js, .miniNavigation {
+	display: none;
+}
+
 .header {
+	// position: relative;
 	img, object {
-		width: 150px;
-		padding-top: 13px;
+		position:absolute;
+   top:50%;
+   left:50%;
+   margin-left:-115px;
 	}
 	li {
 		padding: .4em 0;
 	}
 }
 
-#menu {
-	font-size: 1.3em;
-	line-height: 2.3em;
+.navigation {
+	width: 100%;
+	z-index: 99999;
+	#nav {
+	}
+	ul {
+		border: 1px solid #ddd;
+	}
+	li {
+		display: block;
+		background: #f5f5f5;
+		margin-right: 0;
+		border-top: 1px solid #fff;
+		padding: .5em 0;
+	}
+}
+
+.miniHeader {
+	.miniNavigation {
+		width: 100%;
+		ul {
+			border: 1px solid $darkBlue;
+			margin-top: 1em;
+		}
+		li {
+			display: block;
+			background: $mainBlue;
+			margin-right: 0;
+			border-top: 1px solid #00cdef;
+			padding: .5em 0;
+			text-align: center;
+		}
+	}
+}
+
+.login {
+	padding: 10px 10px 4px 10px;
 }
 
 .main {
-	padding-top: 75px;
+	padding-top: 35px;
 }
 
 .post {

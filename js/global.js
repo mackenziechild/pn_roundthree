@@ -19,78 +19,39 @@ $(function () {
 	});
 });
 
+$(".miniHeader").hide();
+
+$(function () {
+  $(window).scroll(function () {
+    if ($(this).scrollTop() > 171) {
+      $('.miniHeader').fadeIn('fast');
+    } else {
+      $('.miniHeader').fadeOut('fast');
+    }
+  });
+});
+
 $('.showReferences').click(function(e) {
 	e.preventDefault();
   $('.references').fadeIn(500)
   $('.showReferences').fadeOut(500)
 });
 
-
-// Sign up form slide in upon click. 
-var signupVisible = 0;
-$(".man, .woman, .fitpro").click(function(e) {
-	e.preventDefault();
-	if (signupVisible === 0) {
-		$("#signupForm").slideToggle(500);
-		signupVisible = 1;	
-		$(".select, .signupLinks, .beforeAfter").fadeOut(500);
-	} else {
-		$("#signupForm").slideToggle(500);
-		signupVisible = 0;
-		$(".select").fadeIn(500);
-	}
-});
-
-// Form Submission through Ajax
-
-$('#submit').click(function () {        
-      
-  var name = $('input[name=name]');
-  var email = $('input[name=email]');
-  var hire = $('input[name=hire]');
-
-  if (name.val()=='') {
-      name.addClass('hightlight');
-      return false;
-  } else name.removeClass('hightlight');
-  
-  if (email.val()=='') {
-      email.addClass('hightlight');
-      return false;
-  } else email.removeClass('hightlight');
-  
-  if (hire.val()=='') {
-      hire.addClass('hightlight');
-      return false;
-  } else hire.removeClass('hightlight');
-      
-  var data = 'name=' + name.val() + '&email=' + email.val() + '&hire='
-  + hire.val();
-
-  $.ajax({
-      url: "contact.php",    
-      type: "POST",         
-      data: data,        
-      cache: false,
-      success: function (html) {                                 
-        $('#signupForm, .signupHeader').fadeOut('slow');                    
-        $('.done').fadeIn('slow');
-      }     
-  });
-  return false;
-});    
-
-
-// Changes navigation upon resize below 800px to list icon with dropdown menu.
+// Changes navigation upon resize below 600px to list icon with dropdown menu.
 
 $("#nav").addClass("js");
 $("#nav").addClass("js").before('<div id="menu"><i class="icon-reorder"></i></div>');
 $("#menu").click(function(){
 	$("#nav").toggle();
 });
+$(".miniNavigation").addClass("js");
+$(".miniNavigation").addClass("js").before('<div id="miniMenu"><i class="icon-reorder"></i></div>');
+$("#miniMenu").click(function(){
+	$(".miniNavigation").toggle();
+});
 $(window).resize(function(){
-	if(window.innerWidth > 768) {
-		$("#nav").removeAttr("style");
+	if(window.innerWidth > 600) {
+		$("#nav, .miniNavigation").removeAttr("style");
 	}
 });
 
